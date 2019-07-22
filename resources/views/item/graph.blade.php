@@ -15,21 +15,22 @@
 <script>
   var options = {
     chart: {
-      height: 350,
       type: 'bar',
     },
     plotOptions: {
       bar: {
         horizontal: false,
-        endingShape: 'rounded'
       }
     },
     dataLabels: {
       enabled: true
     },
-    series: [{
-      data: @json($items->pluck('stock'))
-    }],
+    series: [
+      {
+        data: @json($items->pluck('stock')),
+        name: 'Stock'
+      }
+    ],
     xaxis: {
       categories: @json($items->pluck('name')),
     },
