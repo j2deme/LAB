@@ -32,23 +32,37 @@
               @forelse ($items as $item)
               <tr>
                 <td>{{ $item->id }}</td>
-                <td>{{ $item->name }}</td>
+                <td>
+                  <a href="{{ action('ItemController@show', $item) }}">{{ $item->name }}</a>
+                </td>
                 <td>{{ $item->stock }}</td>
                 <td>
-                  <div class="btn-group" role="group">
-                    <a href="{{ action('ItemController@show', $item) }}" class="btn btn-secondary">
-                      @fa('eye')
-                    </a>
+                  <div class="btn-group btn-group-sm" role="group">
+                    {{-- <a href="{{ action('ItemController@show', $item) }}" class="btn btn-secondary">
+                    @fa('eye')
+                    </a> --}}
                     <a href="{{ action('ItemController@edit', $item) }}" class="btn btn-secondary">
                       @fa('edit')
                     </a>
-                    <form class="btn-group" action="{{ action('ItemController@destroy', $item) }}" method="POST">
+                    <form class="btn-group btn-group-sm" action="{{ action('ItemController@destroy', $item) }}"
+                      method="POST">
                       @method('DELETE')
                       @csrf
                       <button class="btn btn-danger confirm">
                         @fa('trash')
                       </button>
                     </form>
+                  </div>
+
+                  <div class="btn-group btn-group-sm" role="group">
+                    <a href="{{ action('ItemController@stock',['id'=>$item,'action'=>'add']) }}"
+                      class="btn btn-success">
+                      @fa('plus')
+                    </a>
+                    <a href="{{ action('ItemController@stock',['id'=>$item,'action'=>'remove']) }}"
+                      class="btn btn-danger">
+                      @fa('minus')
+                    </a>
                   </div>
                 </td>
               </tr>

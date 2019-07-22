@@ -112,4 +112,20 @@ class ItemController extends Controller
     //dd($data['items']->pluck('name')->toJson());
     return view('item.graph', $data);
   }
+
+  public function stock($id, $action)
+  {
+    $item = Item::find($id);
+    $stock = $item->stock;
+    if ($action == 'add') {
+      $item->stock = $stock + 1;
+    } else {
+      if ($stock > 0) {
+        $item->stock = $stock - 1;
+      }
+    }
+    $item->save();
+
+    return redirect()->action('ItemController@index');
+  }
 }

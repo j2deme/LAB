@@ -20,6 +20,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/items/graph', 'ItemController@graph')->name('item.graph');
 
+Route::get('/items/stock/{id}/{action}', 'ItemController@stock')->name('item.stock');
+
 Route::resources([
   'roles' => 'RoleController',
   'users' => 'UserController',
